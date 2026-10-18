@@ -19,8 +19,10 @@ if not files:
 rows = []
 for line in files[0].read_text(encoding="utf-8").splitlines():
     if TC_ROW.match(line):
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        rows.append({
+    cells = [c.strip() for c in line.strip().strip("|").split("|")]
+    if len(cells) < 4:
+        continue
+    rows.append({
             "id": cells[0],
             "refs": [r.strip() for r in cells[1].split(",")],
             "polarity": cells[3].lower()
