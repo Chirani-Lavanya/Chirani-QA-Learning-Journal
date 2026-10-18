@@ -68,4 +68,3 @@ Complete this section only after finishing your own review and comparing it with
 - **What AI got wrong:** TODO — record a verified error, or state that none was found after checking.
 - **What AI invented or assumed:** TODO — identify an unsupported claim, or state that none was found after checking.
 
-**Verification note:** Do not claim that AI made an error or invented information unless you have checked the exact wording and can explain why it is unsupported.
