@@ -1,0 +1,16 @@
+id,area,what_could_go_wrong,likelihood,impact,linked_tc,decision
+R-01,Payment,Payment succeeds but booking is not confirmed,3,3,TC-07;TC-09;TC-11,Mitigate
+R-02,Booking,Two students book the same tutor slot,3,3,TC-10;TC-12,Mitigate
+R-03,Cancellation,Incorrect cancellation or refund outcome,3,3,TC-16;TC-17;TC-18,Mitigate
+R-04,Security,Payment card data is stored on LearnLanka servers,2,3,TC-38;TC-39,Mitigate
+R-05,Performance,Search results exceed the 800ms target,2,3,TC-29;TC-30,Mitigate
+R-06,Privacy,Personal data is not handled according to privacy requirements,2,3,TC-35;TC-36;TC-37,Mitigate
+R-07,Payout,Tutor commission or payout is calculated incorrectly,2,3,TC-19;TC-20;TC-21;TC-22,Mitigate
+R-08,Video,Video service fails during tutoring sessions,2,3,TC-33;TC-34;TC-44,Mitigate
+R-09,Search,Search results are incorrect when filters are combined,2,2,TC-05;TC-06,Mitigate
+R-10,Localization,Important text is missing or incorrect in a selected language,2,2,TC-47;TC-48;TC-49;TC-50,Mitigate
+R-11,Rating,Invalid rating comments are accepted,2,2,TC-25;TC-26;TC-28,Mitigate
+R-12,Mobile,Application controls are difficult to use on some Android screens,2,2,TC-40;TC-41,Monitor
+R-13,Availability,Booking endpoint becomes unavailable,2,3,TC-31;TC-32,Mitigate
+R-14,Integration,Payment gateway integration fails,2,3,TC-08;TC-11;TC-45,Mitigate
+R-15,Payout,Tutor bank transfer integration fails,2,3,TC-21;TC-46,Mitigate
