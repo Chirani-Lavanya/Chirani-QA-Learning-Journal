@@ -1,7 +1,7 @@
 Session 02 — Day 1: Test Conditions List
-Project: LearnLanka Tutoring Marketplace
-Deliverable: Test Conditions List
-Author: Chirani Lavanya
+Project: LearnLanka Tutoring Marketplace  
+Deliverable: Test Conditions List  
+Author: Chirani Lavanya  
 Status: First Draft
 1. Purpose
 This document lists test conditions for the LearnLanka Tutoring Marketplace. A test condition describes something that needs to be tested; it does not provide detailed, step-by-step test-case instructions. The conditions cover functional requirements (FR), non-functional requirements (NFR), and constraints (CON). Negative and boundary conditions are included where appropriate.
@@ -36,8 +36,6 @@ TC-25	FR-5	Verify that a rating comment can be submitted within the permitted co
 TC-26	FR-5	Verify that ratings cannot be submitted for sessions that have not been completed.	Negative
 TC-27	FR-5	Verify that ratings and comments appear on the appropriate profile.	Positive
 TC-28	FR-5	Verify the system response to an empty comment or a comment exceeding the permitted limit.	Negative/Boundary
-
-
 2.2 Non-Functional Requirements
 Test Condition ID	Requirement	Test Condition	Type
 TC-29	NFR-1	Verify that search results meet the response-time target of under 800 ms at the 95th percentile when tested from a Sri Lankan ISP.	Performance
@@ -55,8 +53,6 @@ TC-51	NFR-1	Verify whether the search response-time target is met when the 95th-
 TC-52	NFR-2	Verify the effect on monthly uptime when the booking endpoint experiences downtime.	Negative
 TC-53	NFR-4	Verify that a deletion request is handled appropriately when required identity verification is incomplete.	Negative
 TC-54	NFR-5	Verify that sensitive payment-card data is not stored on LearnLanka servers after a failed payment.	Negative
-
-
 2.3 Constraints
 Test Condition ID	Requirement	Test Condition	Type
 TC-40	CON-1	Verify that the main user journeys work on mobile devices, with particular attention to Android devices.	Compatibility
@@ -74,8 +70,6 @@ TC-55	CON-1	Verify that essential search and booking controls remain usable on a
 TC-56	CON-2	Verify the deployment approach against the client's confirmed hosting decision if Azure is not selected.	Negative/Compatibility
 TC-57	CON-4	Verify the system's response when the configured PayHere payment service is unavailable.	Negative/Integration
 TC-58	CON-5	Verify that missing Sinhala, Tamil, or English translations are detected on relevant UI screens.	Negative/Localization
-
-
 3. Negative and Boundary Conditions
 The following conditions specifically examine invalid inputs, failures, limits, or competing actions.
 Test Condition ID	Requirement	Negative or Boundary Scenario
@@ -97,24 +91,18 @@ TC-55	CON-1	Essential controls are tested on a small supported Android screen.
 TC-56	CON-2	The deployment approach is checked if Azure is not selected.
 TC-57	CON-4	The PayHere payment service is unavailable.
 TC-58	CON-5	A required Sinhala, Tamil, or English translation is missing.
-
-
 4. Requirement Coverage Summary
 Requirement Group	Requirements	Coverage Status
 Functional	FR-1 to FR-5	Covered in this draft
 Non-functional	NFR-1 to NFR-5	Covered in this draft
 Constraints	CON-1 to CON-5	Covered in this draft
 Total	15 requirements and constraints	15/15 referenced
-
-
 Coverage Checker Results
-The previous coverage-checker result was recorded before TC-51 to TC-58 were added. Run python tools/check_coverage.py after saving the final rows, then replace the placeholders below with the actual output.
+The previous coverage-checker result was recorded before TC-51 to TC-58 were added. Run `python tools/check_coverage.py` after saving the final rows, then replace the placeholders below with the actual output.
 Metric	Latest result
 Total test conditions	Pending re-run
 Negative/boundary conditions	Pending re-run
 Requirements referenced	Pending re-run
-
-
 Note: This is a manual coverage summary. Record the latest result from the course-provided coverage-checking script after the final run.
 5. Clarifications Needed
 Some requirements need additional detail before definitive pass/fail criteria can be established.
@@ -131,7 +119,8 @@ NFR-5	Payments	Which payment data, if any, may be retained as tokens or transact
 CON-2	Hosting	Is Azure a mandatory deployment requirement or only the preferred hosting platform?
 CON-3	Video provider	Will the product use Daily.co or 100ms at launch?
 CON-5	Localization	Must every page, error message, notification, and validation message be translated into all three languages?
-
+6. Reflection
+Writing these test conditions helped me distinguish between a requirement and something that can be tested. I included positive conditions to verify expected behaviour and negative or boundary conditions to examine failures and limits. I also identified areas where the requirements do not provide enough detail to decide a clear pass or fail. These need clarification before detailed test cases can be finalised. The next step is to compare this list with the LearnLanka requirements and run the course-provided coverage-checking script. Any corrections required by the script or the course instructions should be made before submission.
 
 6. Reflection
 Writing these test conditions helped me distinguish between a requirement and something that can be tested. I included positive conditions to verify expected behaviour and negative or boundary conditions to examine failures and limits. I also identified areas where the requirements do not provide enough detail to decide a clear pass or fail. These need clarification before detailed test cases can be finalised. The next step is to compare this list with the LearnLanka requirements and run the course-provided coverage-checking script. Any corrections required by the script or the course instructions should be made before submission..
