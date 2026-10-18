@@ -30,7 +30,7 @@ per_req = defaultdict(lambda: {"count": 0, "negative": False})
 for r in rows:
     for ref in r["refs"]:
         per_req[ref]["count"] += 1
-        if r["polarity"] in ("negative", "boundary"):
+        if "negative" in r["polarity"] or "boundary" in r["polarity"]:
             per_req[ref]["negative"] = True
 
 print("| Requirement | # of conditions | At least one negative? |")
@@ -41,7 +41,7 @@ for req in REQUIRED:
 
 neg = sum(
     1 for r in rows
-    if r["polarity"] in ("negative", "boundary")
+    if "negative" in r["polarity"] or "boundary" in r["polarity"]
 )
 uncovered = [req for req in REQUIRED if per_req[req]["count"] == 0]
 
