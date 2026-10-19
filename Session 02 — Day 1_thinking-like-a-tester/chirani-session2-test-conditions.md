@@ -134,37 +134,40 @@ Total | 15 requirements and constraints |	15/15 requirements have test condition
 
 Metric | Latest Result |
 |---|---|
-Total test conditions |	58
-Negative/boundary conditions | 21
-Requirements with test conditions | 15/15
-Requirements with at least one negative/boundary condition | 15/15
+Total test conditions |	58 |
+Negative/boundary conditions | 21 |
+Requirements with test conditions | 15/15 |
+Requirements with at least one negative/boundary condition | 15/15 |
 
 ### Coverage Validation Summary
 
 Total test conditions: 58, meeting the target of 25 or more.
+
 Negative/boundary conditions: 21, meeting the target of 8 or more.
+
 Requirement coverage: All 15 requirements (FR-1 to FR-5, NFR-1 to NFR-5 and CON-1 to CON-5) have associated test conditions.
+
 Negative/boundary coverage: The checker confirms that every listed requirement has at least one negative/boundary condition.
 
 ## 5. Clarifications Needed
 
 ID | Clarification Needed | Reason | 
 |---|---|---|
-CL-01 | What should happen when a user enters invalid or incomplete information? | To clarify input validation rules and expected error messages. |
+CL-01 | What should happen when a user enters invalid or incomplete information? | To clarify input validation rules and expected error messages |
 
-CL-02 | What are the minimum and maximum permitted values for relevant input fields? | To define boundary values and expected behavior outside permitted limits. |
+CL-02 | What are the minimum and maximum permitted values for relevant input fields? | To define boundary values and expected behavior outside permitted limits |
 
-CL-03 | What should happen when two users attempt the same action simultaneously? | To clarify concurrent-use behavior and help prevent inconsistent data. |
+CL-03 | What should happen when two users attempt the same action simultaneously? | To clarify concurrent-use behavior and help prevent inconsistent data |
 
-CL-04 | What should the system do when a request fails because of a network or server error? | To define error handling, retry behavior and user feedback. |
+CL-04 | What should the system do when a request fails because of a network or server error? | To define error handling, retry behavior and user feedback |
 
-CL-05 | What response-time limits are expected under normal and high-load conditions? | To establish measurable performance acceptance criteria. |
+CL-05 | What response-time limits are expected under normal and high-load conditions? | To establish measurable performance acceptance criteria |
 
-CL-06 | What access permissions should apply to each user role? | To clarify authorization rules and prevent unauthorized access. |
+CL-06 | What access permissions should apply to each user role? | To clarify authorization rules and prevent unauthorized access |
 
-CL-07 | What should happen when a user submits the same request more than once? | To clarify duplicate-submission handling and prevent unintended duplicate records or transactions. |
+CL-07 | What should happen when a user submits the same request more than once? | To clarify duplicate-submission handling and prevent unintended duplicate records or transactions |
 
-CL-08 | What should happen to relate data when a user cancels an action? | To clarify cancellation behavior and maintain data consistency. |
+CL-08 | What should happen to relate data when a user cancels an action? | To clarify cancellation behavior and maintain data consistency |
 
 ## 6. Clarification Approach
 
