@@ -2,7 +2,6 @@
 
 **Project:** LearnLanka Tutoring Marketplace  
 **Author:** Chirani Lavanya  
-**Status:** First Draft
 
 ## 1. Purpose
 
