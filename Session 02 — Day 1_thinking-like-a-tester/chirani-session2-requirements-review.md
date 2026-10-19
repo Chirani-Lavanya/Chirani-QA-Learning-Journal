@@ -62,9 +62,7 @@ These are assumptions to confirm, not approved requirements.
 
 ## 6. AI Check
 
-Complete this section only after finishing your own review and comparing it with an AI review.
-
-- **What AI found that I missed:** TODO — record a specific finding you verified against the brief.
-- **What AI got wrong:** TODO — record a verified error, or state that none was found after checking.
-- **What AI invented or assumed:** TODO — identify an unsupported claim, or state that none was found after checking.
+- **What AI found that I missed:**  — record a specific finding you verified against the brief.
+- **What AI got wrong:** — record a verified error, or state that none was found after checking.
+- **What AI invented or assumed:**  — identify an unsupported claim, or state that none was found after checking.
 
