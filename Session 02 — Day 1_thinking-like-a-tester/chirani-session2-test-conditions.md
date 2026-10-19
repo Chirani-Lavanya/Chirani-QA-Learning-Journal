@@ -154,19 +154,12 @@ Negative/boundary coverage: The checker confirms that every listed requirement h
 ID | Clarification Needed | Reason | 
 |---|---|---|
 CL-01 | What should happen when a user enters invalid or incomplete information? | To clarify input validation rules and expected error messages |
-
 CL-02 | What are the minimum and maximum permitted values for relevant input fields? | To define boundary values and expected behavior outside permitted limits |
-
 CL-03 | What should happen when two users attempt the same action simultaneously? | To clarify concurrent-use behavior and help prevent inconsistent data |
-
 CL-04 | What should the system do when a request fails because of a network or server error? | To define error handling, retry behavior and user feedback |
-
 CL-05 | What response-time limits are expected under normal and high-load conditions? | To establish measurable performance acceptance criteria |
-
 CL-06 | What access permissions should apply to each user role? | To clarify authorization rules and prevent unauthorized access |
-
 CL-07 | What should happen when a user submits the same request more than once? | To clarify duplicate-submission handling and prevent unintended duplicate records or transactions |
-
 CL-08 | What should happen to relate data when a user cancels an action? | To clarify cancellation behavior and maintain data consistency |
 
 ## 6. Clarification Approach
