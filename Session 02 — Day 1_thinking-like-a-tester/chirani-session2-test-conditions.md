@@ -2,8 +2,7 @@
 
 **Project:** LearnLanka Tutoring Marketplace  
 **Deliverable:** Test Conditions List  
-**Author:** Chirani Lavanya  
-**Status:** First Draft
+**Author:** Chirani Lavanya 
 
 ---
 
@@ -124,28 +123,56 @@ The following conditions specifically examine invalid inputs, failures, limits, 
 
 ## 4. Requirement Coverage Summary
 
-| Requirement Group | Requirements | Coverage Status |
+Requirement Group |	Requirements |	Coverage Status |
 |---|---|---|
-| Functional | FR-1 to FR-5 | Covered in this draft |
-| Non-Functional | NFR-1 to NFR-5 | Covered in this draft |
-| Constraints | CON-1 to CON-5 | Covered in this draft |
-| **Total** | **15 requirements and constraints** | **15/15 referenced** |
+Functional	| FR-1 to FR-5	| All requirements have test conditions and at least one negative/boundary condition |
+Non-Functional | NFR-1 to NFR-5	| All requirements have test conditions and at least one negative/boundary condition |
+Constraints | CON-1 to CON-5 | All requirements have test conditions and at least one negative/boundary condition |
+Total | 15 requirements and constraints |	15/15 requirements have test conditions and at least one negative/boundary condition |
 
 ### Coverage Checker Results
 
-The previous coverage-checker result was recorded before TC-51 to TC-58 were added. Run the course-provided coverage checker after saving the final rows, then replace the pending values below with the actual output.
-
-| Metric | Latest Result |
+Metric | Latest Result |
 |---|---|
-| Total test conditions | Pending re-run |
-| Negative/boundary conditions | Pending re-run |
-| Requirements referenced | Pending re-run |
+Total test conditions |	58
+Negative/boundary conditions | 21
+Requirements with test conditions | 15/15
+Requirements with at least one negative/boundary condition | 15/15
 
-**Note:** This is a manual coverage summary. Record the latest results from the course-provided coverage-checking script after the final run.
+### Coverage Validation Summary
+
+Total test conditions: 58, meeting the target of 25 or more.
+Negative/boundary conditions: 21, meeting the target of 8 or more.
+Requirement coverage: All 15 requirements (FR-1 to FR-5, NFR-1 to NFR-5 and CON-1 to CON-5) have associated test conditions.
+Negative/boundary coverage: The checker confirms that every listed requirement has at least one negative/boundary condition.
 
 ## 5. Clarifications Needed
 
-Some requirements need additional detail before definitive pass/fail criteria can be established.
+ID | Clarification Needed | Reason | 
+|---|---|---|
+CL-01 | What should happen when a user enters invalid or incomplete information? | To clarify input validation rules and expected error messages. |
+
+CL-02 | What are the minimum and maximum permitted values for relevant input fields? | To define boundary values and expected behavior outside permitted limits. |
+
+CL-03 | What should happen when two users attempt the same action simultaneously? | To clarify concurrent-use behavior and help prevent inconsistent data. |
+
+CL-04 | What should the system do when a request fails because of a network or server error? | To define error handling, retry behavior and user feedback. |
+
+CL-05 | What response-time limits are expected under normal and high-load conditions? | To establish measurable performance acceptance criteria. |
+
+CL-06 | What access permissions should apply to each user role? | To clarify authorization rules and prevent unauthorized access. |
+
+CL-07 | What should happen when a user submits the same request more than once? | To clarify duplicate-submission handling and prevent unintended duplicate records or transactions. |
+
+CL-08 | What should happen to relate data when a user cancels an action? | To clarify cancellation behavior and maintain data consistency. |
+
+## 6. Clarification Approach
+
+1. Identify requirements that are ambiguous, incomplete or not measurable.
+2. Record a specific question for each requirement that needs clarification.
+3. Discuss the questions with the product owner or relevant stakeholder.
+4. Document the agreed behaviour and acceptance criteria.
+5. Update the affected test conditions and coverage information after clarification
 
 | Requirement | Area | Question Requiring Clarification |
 |---|---|---|
@@ -162,7 +189,7 @@ Some requirements need additional detail before definitive pass/fail criteria ca
 | CON-3 | Video Provider | Will the product use Daily.co or 100ms at launch? |
 | CON-5 | Localization | Must every page, error message, notification, and validation message be translated into all three languages? |
 
-## 6. Reflection
+## 7. Reflection
 
 Writing these test conditions helped me distinguish between a requirement and something that can be tested. I included positive conditions to verify expected behaviour and negative or boundary conditions to examine failures and limits.
 
