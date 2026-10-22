@@ -12,24 +12,69 @@ The purpose of this review is to identify ambiguous, untestable, missing, and co
 
 LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and book one-to-one online sessions in Sinhala, Tamil or English. Students search, book a 1-hour slot and pay by card or eZ Cash. Tutors set their own availability, accept or decline bookings, and can cancel with at least 12 hours notice. We keep 15% of every completed session and pay tutors weekly. After each session both sides rate each other. It has to be fast, safe for children, and work on any phone.
 
-## 2.  Requirements Review Findings
+## 2. Requirements Review Findings
 
-#	ID	Finding type	Requirement or phrase under review	Why it matters for testing	Clarification question	Priority
-1	F-01	Ambiguous	"Cancel with at least 12 hours notice"	The time reference is unclear. Different interpretations could cause inconsistent cancellation decisions.	Is the 12-hour window measured backwards from the scheduled session start time, and which timestamp determines eligibility?	High
-2	F-02	Conflicting	12-hour cancellation rule versus the founder's statement that a booking can be cancelled at any time	Both rules cannot be applied consistently without an agreed precedence rule.	Which cancellation rule is authoritative, and are there separate rules for students and tutors?	High
-3	F-03	Conflicting	"Full refund for any cancellation" versus "only refund if tutor cancels"	These statements produce different refund outcomes for student cancellations.	Which cancellation reasons qualify for a full refund, partial refund, or no refund?	High
-4	F-04	Untestable	"Vetted tutors"	There is no defined verification process or measurable completion status.	What checks must a tutor pass before being marked as vetted, and what status should be displayed if a check is incomplete?	High
-5	F-05	Untestable	"Fast"	This phrase alone does not define a measurable performance target.	What response-time threshold and percentile should define acceptable performance for the relevant operation?	Medium
-6	F-06	Untestable	"Safe for children"	Safety is not translated into specific controls or observable expected behaviour.	What child-safety, privacy, reporting, and access-control requirements must the system enforce before release?	High
-7	F-07	Untestable	"Work on any phone"	Supported devices, operating systems, browser versions, and minimum screen sizes are unspecified.	Which mobile devices, operating systems, browsers, and minimum screen sizes must be supported?	Medium
-8	F-08	Missing	Payment failure during booking	Expected behaviour when payment is declined or interrupted is not fully specified in the reviewed information.	If payment fails during booking, should the booking remain pending, be cancelled, or allow a retry?	High
-9	F-09	Missing	Network interruption or retry during payment	Retrying a payment could cause duplicate charges unless duplicate processing is prevented.	How should the system handle repeated payment requests after a timeout, and how is a duplicate charge prevented or reversed?	High
-10	F-10	Untestable	Tutor payout and commission rules	The amount payable to a tutor cannot be checked without defined calculation rules and timing.	What commission rate applies, how is it calculated, and when is a tutor payout eligible to be processed?	High
-11	F-11	Ambiguous	"Completed session"	Different interpretations could affect payments, refunds, and ratings.	What exact event or condition changes a session's status to completed?	High
-12	F-12	Missing	Rating submission and session association	The system might accept ratings from ineligible users or associate a rating with the wrong session.	Who may submit a rating, when is rating enabled, and how is it linked to the correct completed session?	Medium
-13	F-13	Ambiguous	Search across tutoring languages and UI languages	Tutoring language and interface language may be confused, causing unexpected search results or labels.	Are tutoring language filters independent of the selected UI language, and what language should appear in search results?	Medium
-14	F-14	Missing	No tutors match the search criteria	The expected empty-result state and available next actions are not sufficiently defined.	What message and actions should appear when no tutors match the selected search filters?	Medium
-15	F-15	Missing	Payment succeeds but booking confirmation fails	The recovery process for a successful payment without a confirmed booking is not fully defined.	If payment succeeds but booking confirmation fails, how should the system recover the booking or refund the payment?	High
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| #   | ID    | Finding Type | Requirement / Phrase              | Why It Matters for Testing       | Clarification Question           | Priority |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 1   | F-01  | Ambiguous    | Cancel with at least 12 hours    | The time reference is unclear.   | Is the 12-hour window measured    | High     |
+|     |       |              | notice                           | Different interpretations could  | from the scheduled session start |          |
+|     |       |              |                                  | cause inconsistent decisions.   | time, and which timestamp        |          |
+|     |       |              |                                  |                                  | determines eligibility?          |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 2   | F-02  | Conflicting  | 12-hour cancellation rule versus | Both rules cannot be applied     | Which cancellation rule is       | High     |
+|     |       |              | the founder's statement that     | consistently without an agreed  | authoritative, and are there     |          |
+|     |       |              | bookings can be cancelled        | precedence rule.                 | separate rules for students     |          |
+|     |       |              | at any time                      |                                  | and tutors?                      |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 3   | F-03  | Conflicting  | Full refund for any cancellation | These statements produce        | Which cancellation reasons      | High     |
+|     |       |              | versus refund only if tutor      | different refund outcomes.      | qualify for full, partial,      |          |
+|     |       |              | cancels                          |                                  | or no refunds?                  |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 4   | F-04  | Untestable   | Vetted tutors                    | The verification process and    | What checks must a tutor pass   | High     |
+|     |       |              |                                  | completion status are undefined.| before being marked as vetted?  |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 5   | F-05  | Untestable   | Fast                             | This phrase alone does not      | What response-time threshold    | Medium   |
+|     |       |              |                                  | define a measurable target.     | and percentile should apply?    |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 6   | F-06  | Untestable   | Safe for children                | Safety controls and expected    | What child-safety, privacy,     | High     |
+|     |       |              |                                  | behaviour are not specified.    | reporting, and access controls  |          |
+|     |       |              |                                  |                                  | are required?                   |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 7   | F-07  | Untestable   | Work on any phone                | Supported devices, operating    | Which devices, operating        | Medium   |
+|     |       |              |                                  | systems, and browsers are       | systems, browsers, and screen   |          |
+|     |       |              |                                  | unspecified.                    | sizes must be supported?        |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 8   | F-08  | Missing      | Payment failure during booking  | Expected behaviour after a      | Should the booking remain       | High     |
+|     |       |              |                                  | failed payment is unclear.      | pending, be cancelled, or allow |          |
+|     |       |              |                                  |                                  | a retry?                        |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 9   | F-09  | Missing      | Network interruption or payment | Retrying a payment could cause  | How should repeated payment     | High     |
+|     |       |              | retry                            | duplicate charges.              | requests be handled to prevent |          |
+|     |       |              |                                  |                                  | duplicate charges?              |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 10  | F-10  | Untestable   | Tutor payout and commission     | Payout amounts cannot be        | What commission rate applies,   | High     |
+|     |       |              | rules                            | verified without calculation   | how is it calculated, and when |          |
+|     |       |              |                                  | rules and timing.               | is payout processed?            |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 11  | F-11  | Ambiguous    | Completed session                | Different interpretations      | What exact event changes the   | High     |
+|     |       |              |                                  | could affect payments, refunds, | session status to completed?   |          |
+|     |       |              |                                  | and ratings.                    |                                  |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 12  | F-12  | Missing      | Rating submission and session   | Ineligible users might submit   | Who can submit a rating, when  | Medium   |
+|     |       |              | association                      | ratings or rate the wrong       | is it enabled, and how is it   |          |
+|     |       |              |                                  | session.                        | linked to the correct session? |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 13  | F-13  | Ambiguous    | Tutoring languages and UI       | Language filters and interface  | Are tutoring language filters  | Medium   |
+|     |       |              | languages                        | language may be confused.      | independent of UI language?    |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 14  | F-14  | Missing      | No tutors match search criteria| The empty-result behaviour and  | What message and actions       | Medium   |
+|     |       |              |                                  | next actions are undefined.     | should appear when no tutors   |          |
+|     |       |              |                                  |                                  | match the search?              |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
+| 15  | F-15  | Missing      | Payment succeeds but booking    | A user could be charged without| How should the system recover  | High     |
+|     |       |              | confirmation fails              | receiving a confirmed booking.  | the booking or refund payment? |          |
++-----+-------+--------------+----------------------------------+----------------------------------+----------------------------------+----------+
 
 ### Additional formal requirements to review
 
