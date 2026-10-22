@@ -1,33 +1,35 @@
-# Session 02 — Day 1: Requirements Review Log
+LearnLanka — Requirements Review Log
 
-**Challenge:** LearnLanka Tutoring Marketplace — Requirements Review and Risk Map
+Session: Session 2, Day 1 — Thinking Like a Tester
+Project: LearnLanka Tutoring Marketplace
+Deliverable: 1 — Requirements Review Log
 
-## 1. Challenge Brief
+## 1. Purpose
 
-LearnLanka helps O/L and A/L students across Sri Lanka find **vetted tutors** and book one-to-one online sessions in Sinhala, Tamil or English. Students search, book a **1-hour slot** and pay by card or eZ Cash. Tutors set their own availability, accept or decline bookings, and **can cancel with at least 12 hours notice**. We keep **15% of every completed session** and **pay tutors weekly**. After each session both sides rate each other. It has to be **fast**, **safe for children**, and **work on any phone**.
+The purpose of this review is to identify ambiguous, untestable, missing, and conflicting requirements before software development begins. These findings will help the development team clarify expected behaviour and allow QA engineers to create reliable test conditions.
 
-### Additional Statements from the Founders
+## 2. Challenge Brief
 
-- “**tutors should be able to cancel any time**, they are doing us a favour”
-- “**students must get a full refund for any cancellation**”
-- “**we only refund if the tutor cancels**”
+LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and book one-to-one online sessions in Sinhala, Tamil or English. Students search, book a 1-hour slot and pay by card or eZ Cash. Tutors set their own availability, accept or decline bookings, and can cancel with at least 12 hours notice. We keep 15% of every completed session and pay tutors weekly. After each session both sides rate each other. It has to be fast, safe for children, and work on any phone.
 
-## 2. Requirements Findings
+## 2.  Requirements Review Findings
 
-| # | Exact quote / requirement | Finding type | Why it is a problem for testing | Clarification question | Priority |
-|---|---|---|---|---|---|
-| 1 | “can cancel with at least 12 hours notice” versus “tutors should be able to cancel any time” | Conflicting | Different rules produce different expected results for cancellations close to the session. | Are tutors allowed to cancel less than 12 hours before a session? | High |
-| 2 | “students must get a full refund for any cancellation” versus “we only refund if the tutor cancels” | Conflicting | The refund outcome for student cancellations is contradictory. | Which cancellation scenarios qualify for a full refund? | High |
-| 3 | “safe for children” | Untestable | No measurable child-safety acceptance criteria are given. | Which child-safety controls must be implemented and verified before launch? | High |
-| 4 | “vetted tutors” | Ambiguous | The vetting process and approval criteria are not defined. | What checks must a tutor pass before becoming searchable? | High |
-| 5 | “fast” | Untestable | The introductory brief does not define a measurable speed target, although NFR-1 specifies a search target. | Which response-time target and measurement conditions define acceptable performance for each key journey? | Medium |
-| 6 | “work on any phone” | Untestable | Supported devices, operating systems, browsers, and minimum versions are not defined. | Which phone models or capability levels, operating systems, and browsers are in scope? | Medium |
-| 7 | “After each session both sides rate each other” | Missing | The brief does not fully define rating eligibility, comment validation, or handling of inappropriate comments. | Can users rate only completed sessions, and what comment validation and moderation rules apply? | Medium |
-| 8 | “pay tutors weekly” | Ambiguous | The payout day, cutoff, failed-transfer behavior, and holiday handling are not specified. | What is the payout schedule, and how are failed transfers and bank holidays handled? | High |
-| 9 | “15% of every completed session” | Ambiguous | The fee basis, rounding method, and treatment of discounts or refunds are unspecified. | How should commission be calculated and rounded, and how are discounts and refunds handled? | High |
-| 10 | “pay by card or eZ Cash” | Missing | Payment failure, timeout, retry, and duplicate-submission behavior are not defined. | What should happen to the booking and payment after a failed, timed-out, or repeated payment attempt? | High |
-| 11 | “book a 1-hour slot” | Missing | The brief does not specify how overlapping bookings or simultaneous attempts for the same slot are handled. | How should the system prevent two students from confirming the same tutor slot? | High |
-| 12 | “find vetted tutors and book one-to-one online sessions” | Missing | The brief does not define what happens when no tutors match the search or a tutor becomes unavailable during booking. | What should students see when no tutors match, or when a selected slot becomes unavailable? | Medium |
+#	ID	Finding type	Requirement or phrase under review	Why it matters for testing	Clarification question	Priority
+1	F-01	Ambiguous	"Cancel with at least 12 hours notice"	The time reference is unclear. Different interpretations could cause inconsistent cancellation decisions.	Is the 12-hour window measured backwards from the scheduled session start time, and which timestamp determines eligibility?	High
+2	F-02	Conflicting	12-hour cancellation rule versus the founder's statement that a booking can be cancelled at any time	Both rules cannot be applied consistently without an agreed precedence rule.	Which cancellation rule is authoritative, and are there separate rules for students and tutors?	High
+3	F-03	Conflicting	"Full refund for any cancellation" versus "only refund if tutor cancels"	These statements produce different refund outcomes for student cancellations.	Which cancellation reasons qualify for a full refund, partial refund, or no refund?	High
+4	F-04	Untestable	"Vetted tutors"	There is no defined verification process or measurable completion status.	What checks must a tutor pass before being marked as vetted, and what status should be displayed if a check is incomplete?	High
+5	F-05	Untestable	"Fast"	This phrase alone does not define a measurable performance target.	What response-time threshold and percentile should define acceptable performance for the relevant operation?	Medium
+6	F-06	Untestable	"Safe for children"	Safety is not translated into specific controls or observable expected behaviour.	What child-safety, privacy, reporting, and access-control requirements must the system enforce before release?	High
+7	F-07	Untestable	"Work on any phone"	Supported devices, operating systems, browser versions, and minimum screen sizes are unspecified.	Which mobile devices, operating systems, browsers, and minimum screen sizes must be supported?	Medium
+8	F-08	Missing	Payment failure during booking	Expected behaviour when payment is declined or interrupted is not fully specified in the reviewed information.	If payment fails during booking, should the booking remain pending, be cancelled, or allow a retry?	High
+9	F-09	Missing	Network interruption or retry during payment	Retrying a payment could cause duplicate charges unless duplicate processing is prevented.	How should the system handle repeated payment requests after a timeout, and how is a duplicate charge prevented or reversed?	High
+10	F-10	Untestable	Tutor payout and commission rules	The amount payable to a tutor cannot be checked without defined calculation rules and timing.	What commission rate applies, how is it calculated, and when is a tutor payout eligible to be processed?	High
+11	F-11	Ambiguous	"Completed session"	Different interpretations could affect payments, refunds, and ratings.	What exact event or condition changes a session's status to completed?	High
+12	F-12	Missing	Rating submission and session association	The system might accept ratings from ineligible users or associate a rating with the wrong session.	Who may submit a rating, when is rating enabled, and how is it linked to the correct completed session?	Medium
+13	F-13	Ambiguous	Search across tutoring languages and UI languages	Tutoring language and interface language may be confused, causing unexpected search results or labels.	Are tutoring language filters independent of the selected UI language, and what language should appear in search results?	Medium
+14	F-14	Missing	No tutors match the search criteria	The expected empty-result state and available next actions are not sufficiently defined.	What message and actions should appear when no tutors match the selected search filters?	Medium
+15	F-15	Missing	Payment succeeds but booking confirmation fails	The recovery process for a successful payment without a confirmed booking is not fully defined.	If payment succeeds but booking confirmation fails, how should the system recover the booking or refund the payment?	High
 
 ### Additional formal requirements to review
 
