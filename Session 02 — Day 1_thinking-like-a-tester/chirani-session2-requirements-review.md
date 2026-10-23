@@ -1,7 +1,9 @@
 LearnLanka — Requirements Review Log
 
 Session: Session 2, Day 1 — Thinking Like a Tester
+
 Project: LearnLanka Tutoring Marketplace
+
 Deliverable: 1 — Requirements Review Log
 
 ## 1. Purpose
