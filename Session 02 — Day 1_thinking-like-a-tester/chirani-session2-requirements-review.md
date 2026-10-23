@@ -10,7 +10,7 @@ The purpose of this review is to identify ambiguous, untestable, missing, and co
 
 ## 2. Challenge Brief
 
-LearnLanka helps O/L and A/L students across Sri Lanka find **vetted tutors** and book one-to-one online sessions in Sinhala, Tamil or English. Students search, book a **1-hour slot** and pay by card or eZ Cash. Tutors set their own availability, accept or decline bookings, and can **cancel with at least 12 hours notice**. We keep **15% of every completed session** and pay tutors **weekly**. After each session both sides **rate each other**. It has to be **fast**, **safe for children**, and **work on any phone**.
+LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and book one-to-one online sessions in Sinhala, Tamil or English. Students search, book a **1-hour slot** and pay by card or eZ Cash. Tutors set their own availability, accept or decline bookings, and can cancel with at least 12 hours notice. We keep **15% of every completed session** and pay tutors **weekly**. After each session both sides rate each other**. It has to be fast, safe for children, and work on any phone.
 
 
 ## 3. Requirements Review Findings
@@ -62,16 +62,16 @@ My next step is to confirm the unresolved rules and use the clarified requiremen
 
 ## 7. AI Review Record
 
-**What AI identified that I missed:**
-AI highlighted the possibility of a payment succeeding while the booking confirmation fails. I checked the original brief to determine whether this scenario was already covered.
+**What AI identified that I missed:**  
+AI highlighted the risk of payment succeeding while booking confirmation fails, which could leave a student charged without a confirmed booking.
 
-**What AI got wrong:**
-I reviewed the AI suggestions against the original brief and did not accept any suggestion that contradicted the stated requirements.
+**What AI got wrong:**  
+AI initially overlooked the NFR-1 target of less than 800 ms at p95. I corrected the finding to focus on clarifying the target’s scope and test conditions.
 
-**What AI invented or assumed without evidence:**
-AI suggested possible payment recovery behaviour that was not explicitly defined in the brief. I recorded this as a clarification question rather than treating it as a confirmed requirement.
+**What AI assumed without evidence:**  
+AI suggested possible payment recovery and refund behaviours that were not confirmed in the challenge brief.
 
-**What I accepted or rejected and why:**
-I accepted suggestions that were supported by the original brief or identified a genuine unresolved issue. I did not treat assumptions about system behaviour as confirmed requirements.
+**What I accepted or rejected and why:**  
+I accepted suggestions about payment failures and duplicate charges because they reveal important scenarios to clarify. I rejected assumptions that were not supported by the brief and recorded them as questions for the product owner.
 
 
