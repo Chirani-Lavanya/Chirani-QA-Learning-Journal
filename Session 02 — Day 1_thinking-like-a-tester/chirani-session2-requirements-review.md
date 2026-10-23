@@ -14,8 +14,8 @@ LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and bo
 
 ## 2. Requirements Review Findings
 
-|# |ID |	Finding type| Requirement or phrase under review |	Why it matters for testing	| Clarification question	| Priority |
-|---|---|---|---|---|---|---|
+ID |	Finding type| Requirement or phrase under review |	Why it matters for testing	| Clarification question	| Priority |
+|---|---|---|---|---|---|
 
 | F-01 |	Ambiguous|	"Cancel with at least 12 hours notice" |	The time reference is unclear and may cause inconsistent cancellation decisions. | 	Is the 12-hour window measured from the scheduled session start time? | 	High | 
 | F-02 |	Conflicting|	12-hour cancellation rule versus cancellation at any time| Both rules cannot be applied consistently without clarification | Which cancellation rule is authoritative? | 	High |
