@@ -25,7 +25,7 @@ LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and bo
 | F-07 |	Untestable | "Work on any phone" | Supported devices, operating systems, and browsers are unspecified | Which devices, operating systems, and browsers must be supported?	| Medium |
 | F-08 |	Missing	| Payment failure during booking |	The expected behaviour after a failed payment is unclear | Should the booking remain pending, be cancelled, or allow a retry? | High |
 | F-09 |	Missing	| Network interruption or payment retry | Retrying could cause duplicate charges | How should the system prevent or reverse duplicate charges? | High |
-| F-10 | Untestable|	Tutor payout and commission rules	Payout amounts cannot be verified without defined calculation rules | What commission rate applies, and when can payouts be processed?	| High |
+| F-10 | Untestable|	Tutor payout and commission rules	| Payout amounts cannot be verified without defined calculation rules | What commission rate applies, and when can payouts be processed?| High |
 | F-11 |	Ambiguous |	"Completed session" | Different interpretations could affect payments, refunds, and ratings | What exact event changes the session status to completed? |	High |
 | F-12 |	Missing	| Rating submission and session association |	Ineligible users might submit ratings or rate the wrong session | Who can submit a rating, and when is rating enabled? | Medium |
 | F-13 | Ambiguous | Tutoring languages and UI languages | Language filters may produce unexpected search results | Are tutoring language filters independent of the interface language? | Medium |
