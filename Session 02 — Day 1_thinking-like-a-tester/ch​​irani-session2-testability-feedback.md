@@ -23,14 +23,13 @@ Reviewer: QA Intern
 | S6 — Tutor payouts | AC-1 | Missing financial rules and measurable timing | Tutors are paid weekly minus commission. | The 15% commission is defined in FR-4, but the criterion does not specify the calculation basis, payout schedule, treatment of cancelled or disputed sessions, or handling of failed transfers. | Given a completed session that is eligible for payout, When the weekly payout is calculated, Then the system applies the approved 15% commission calculation, includes the session according to the agreed payout cut-off, and records the resulting tutor amount. The calculation basis, cut-off and treatment of refunds or failed transfers must be confirmed by the product owner. |
 | S6 — Tutor payouts | AC-2 | Observable outcome and usability criteria | The tutor can see a payout summary that is easy to understand. | "Easy to understand" is subjective. It does not specify the information that must be displayed or how correctness will be assessed. | Given a Tutor has completed sessions and payout records, When the Tutor opens the payout summary, Then the summary displays the relevant payout period, completed-session amounts, commission deductions, net payout amount and payout status, using clearly labelled values that can be reconciled with the underlying records. |
 
-
 ## 2. Acceptance criteria that can be lifted straight into a test
    
 The following criteria are sufficiently specific to derive test conditions. They may still need concrete test data and execution steps during test-case design.
 - S1, AC-1 — Subject filtering: The system returns only tutors who teach the selected subject. Mapped test conditions: TC-01 and TC-05. TC-01 covers subject filtering; TC-05 covers the no-match outcome.
 - S2, AC-1 — Successful card payment and booking confirmation: A successful card payment results in a Confirmed booking, and the slot is no longer available to other students. Mapped test conditions: TC-07 and TC-09. TC-10 and TC-12 cover duplicate booking and concurrent booking risks.
 - S3, AC-2 — Cancellation restriction under 12 hours: The Cancel button is disabled and the stated message is shown for a confirmed booking less than 12 hours away. Mapped test condition: TC-17. This mapping assumes the product owner confirms the stated restriction as the authoritative policy.
-- 
+
 ## 3. Acceptance criteria that cannot yet be accepted as test-ready
 
 - S1, AC-2: "Results are sorted by relevance." The ranking factors and tie-breaking rules must be defined.
@@ -40,7 +39,7 @@ The following criteria are sufficiently specific to derive test conditions. They
 - S5, AC-2: "Inappropriate comments are not allowed." Define the moderation categories and expected rejection or moderation behaviour.
 - S6, AC-1: "Tutors are paid weekly minus commission." Define the calculation basis, payout cut-off and exceptional financial cases.
 - S6, AC-2: "Easy to understand." Define the required fields and labels in the payout summary.
-- 
+
 ## 4. Three questions for the developer pair
 
 1. Cancellation and refunds: Which single cancellation and refund policy has the product owner approved, and how should the system behave at exactly 12 hours before the scheduled session start?
