@@ -2,7 +2,7 @@ id,area,what_could_go_wrong,likelihood,impact,linked_tc,decision
 R-02,Tutor cancellation,12-hour cancellation rule applied using the wrong time or inconsistent policy,3,3,TC-16;TC-17;TC-18,Mitigate
 R-01,Payments,Duplicate charge after a network retry,2,3,TC-59,Mitigate
 R-03,Payment/booking integration,Payment succeeds but booking confirmation fails,2,3,TC-09;TC-60,Mitigate
-R-04,Child safety and privacy,Personal data exposed or required safety controls missing,2,3,TC-35;TC-36;TC-37;TC-61;TC-62,Mitigate
+R-04,Child safety and privacy,Personal data exposed or required safety controls missing,2,3,TC-35;TC-36;TC-37;TC-62,Mitigate
 R-05,Tutor verification,Unverified tutor is presented as vetted,2,3,TC-61,Mitigate
 R-06,Commission and payouts,Commission or weekly payout is calculated incorrectly,2,3,TC-19;TC-20;TC-21;TC-22;TC-63,Mitigate
 R-09,Booking concurrency,Two students receive the same one-hour slot,2,3,TC-10;TC-12,Mitigate
