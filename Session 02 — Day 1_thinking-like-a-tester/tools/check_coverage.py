@@ -26,7 +26,7 @@ for line in files[0].read_text(encoding="utf-8").splitlines():
         rows.append({
             "id": cells[0],
             "refs": [r.strip() for r in cells[1].split(",")],
-            "polarity": cells[3].lower()
+            "polarity": cells[4].lower()
         })
 
 
