@@ -1,4 +1,4 @@
-id,area,what_could_go_wrong,likelihood,impact,linked_tc,decision,
+id,area,what_could_go_wrong,likelihood,impact,linked_tc,decision
 R-02,Tutor cancellation,12-hour cancellation rule applied using the wrong time or inconsistent policy,3,3,TC-16;TC-17;TC-18,Mitigate
 R-01,Payments,Duplicate charge after a network retry,2,3,TC-59,Mitigate
 R-03,Payment/booking integration,Payment succeeds but booking confirmation fails,2,3,TC-09;TC-60,Mitigate
