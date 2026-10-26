@@ -1,7 +1,9 @@
-LearnLanka — Testability Feedback on User Story Set v0.1
+## LearnLanka — Testability Feedback on User Story Set v0.1
 
 Story set reviewed: Reference set provided in the Session 2, Day 1 challenge
-Project: LearnLanka Tutoring Marketplace
+
+## Project: LearnLanka Tutoring Marketplace
+
 Reviewer: QA Intern
 
 ## 1. Story-by-story review
