@@ -12,7 +12,7 @@ The purpose of this review is to identify ambiguous, untestable, missing, and co
 
 ## 2. Challenge Brief
 
-LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and book one-to-one online sessions in Sinhala, Tamil or English. Students search, book a **1-hour slot** and pay by card or eZ Cash. Tutors set their own availability, accept or decline bookings, and can cancel with at least 12 hours notice. We keep **15% of every completed session** and pay tutors **weekly**. After each session both sides rate each other**. It has to be fast, safe for children, and work on any phone.
+LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and book one-to-one online sessions in Sinhala, Tamil or English. Students search, book a **1-hour slot** and pay by card or eZ Cash. Tutors set their own availability, accept or decline bookings, and can cancel with at least 12 hours notice. We keep **15% of every completed session** and pay tutors **weekly**. After each session, both students and tutors can rate each other. The platform must be fast, safe for children, and work on mobile devices.
 
 
 ## 3. Requirements Review Findings
@@ -24,7 +24,7 @@ LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and bo
 | F-03 |	Missing	| Cancellation outcome and refund handling | The brief defines a 12-hour cancellation notice for tutors but does not explain the cancellation and refund outcomes. |What happens to the booking and payment when a tutor cancels, and what cancellation rules apply to students? | High |
 | F-04 | Untestable	| "Vetted tutors" |	The verification process and completion criteria are undefined | What checks must a tutor pass before being marked as vetted? |	High |
 | F-05 |	Ambiguous  | "Fast" and NFR-1's search target of less than 800 ms at p95	| The brief includes a measurable search target, but the scope and measurement conditions need to be clear |	Does the less-than-800-ms p95 target apply to all search operations, and under what test conditions should it be measured?| Medium | 
-| F-06 | Untestable	| "Safe for children |Safety controls and expected behaviour are not specified in the brief provided. | 	What child-safety, privacy, and access-control requirements are mandatory? | High |
+| F-06 | Untestable	| "Safe for children" |Safety controls and expected behaviour are not specified in the brief provided. | 	What child-safety, privacy, and access-control requirements are mandatory? | High |
 | F-07 |	Untestable | "Work on any phone" | Supported devices, operating systems, and browsers are unspecified | Which devices, operating systems, and browsers must be supported?	| Medium |
 | F-08 |	Missing	| Payment failure during booking |	The expected behaviour after a failed payment is unclear | Should the booking remain pending, be cancelled, or allow a retry? | High |
 | F-09 |	Missing	| Network interruption or payment retry | Retrying could cause duplicate charges | How should the system prevent or reverse duplicate charges? | High |
@@ -34,6 +34,7 @@ LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and bo
 | F-13 | Ambiguous | Tutoring languages and UI languages | Language filters may produce unexpected search results | Are tutoring language filters independent of the interface language? | Medium |
 | F-14 | Missing | No tutors match search criteria |	The expected empty-result behaviour is undefined | What message and actions should appear when no tutors match? | Medium |
 | F-15 | Missing | Payment succeeds but booking confirmation fails | A user could be charged without receiving a confirmed booking | How should the system recover the booking or refund the payment?	| High |
+| F-16 | Conflicting | Founder statements about cancellation and refunds | The statements about when tutors can cancel and when students receive refunds contradict one another. QA cannot determine the correct expected result until the policy is agreed. | Which cancellation and refund policy is the single authoritative rule for both students and tutors, including cancellations within 12 hours of a session? | High |
 
 ## 4. Assumptions
 
@@ -50,7 +51,7 @@ LearnLanka helps O/L and A/L students across Sri Lanka find vetted tutors and bo
 
 ## 5. Top Three Clarification Questions
 
-1. Cancellation and refunds: Which cancellation and refund policy is authoritative, and how should the 12-hour cutoff be calculated?
+1. Cancellation and refunds: The founder statements conflict about when tutors can cancel and when students receive refunds. Which policy is authoritative, and is the 12-hour cancellation cutoff measured from the scheduled session start time?
 2. Payments: What should happen if a payment is interrupted, retried, declined, or successful while booking confirmation fails?
 3. Tutor verification and child safety: What specific verification and safety checks must be completed before a tutor can accept bookings?
 
