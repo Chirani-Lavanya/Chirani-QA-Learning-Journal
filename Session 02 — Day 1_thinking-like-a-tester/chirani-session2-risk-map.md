@@ -58,15 +58,11 @@ R-03 — Payment/booking integration: Likelihood is 2 because gateway success an
 
 ## 6. If I Had One Hour
 
-1. TC-34 — Payment retry after network timeout: Prioritise preventing duplicate charges.
-
-2. TC-06 and TC-08 — Booking/payment outcomes: Verify that successful and failed payments produce consistent booking states.
-
-3. TC-13 and TC-14 — Cancellation boundary: Test exactly 12 hours and 11 hours 59 minutes before the session, after the cancellation policy is confirmed.
-
-4. TC-16 and TC-18 — Commission and payout: Verify calculations against agreed financial rules.
-
-5. TC-25 and TC-27 — Consent and payment data: Check privacy and payment-data controls.
+1. TC-59 — Payment retries after network timeout: Check that retrying a payment does not cause a duplicate charge. This is a high-impact financial risk.
+2. TC-09 and TC-60 — Payment and booking integration: Check the successful-payment booking outcome and the case where payment succeeds but booking confirmation fails.
+3. TC-16, TC-17 and TC-18 — Tutor cancellation: Check cancellation more than 12 hours before, less than 12 hours before, and exactly 12 hours before the scheduled session start, once the product owner confirms the policy.
+4. TC-19, TC-20, TC-21 and TC-63 — Commission and payouts: Check commission calculation, the tutor's net amount, weekly payouts, and the agreed handling of cancelled or refunded sessions.
+5. TC-35, TC-36, TC-37 and TC-62 — Privacy and child safety: Check consent capture, deletion requests, data-protection handling and prevention of unauthorised access to personal data.
 
 ## 7. Risks I Am Deliberately Not Testing in V1
 
