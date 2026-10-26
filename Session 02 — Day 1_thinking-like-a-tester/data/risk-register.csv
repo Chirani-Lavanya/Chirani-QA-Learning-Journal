@@ -1,16 +1,16 @@
 id,area,what_could_go_wrong,likelihood,impact,linked_tc,decision
-R-01,Payment,Payment succeeds but booking is not confirmed,3,3,TC-07;TC-09;TC-11,Mitigate
-R-02,Booking,Two students book the same tutor slot,3,3,TC-10;TC-12,Mitigate
-R-03,Cancellation,Incorrect cancellation or refund outcome,3,3,TC-16;TC-17;TC-18,Mitigate
-R-04,Security,Payment card data is stored on LearnLanka servers,2,3,TC-38;TC-39,Mitigate
-R-05,Performance,Search results exceed the 800ms target,2,3,TC-29;TC-30,Mitigate
-R-06,Privacy,Personal data is not handled according to privacy requirements,2,3,TC-35;TC-36;TC-37,Mitigate
-R-07,Payout,Tutor commission or payout is calculated incorrectly,2,3,TC-19;TC-20;TC-21;TC-22,Mitigate
-R-08,Video,Video service fails during tutoring sessions,2,3,TC-33;TC-34;TC-44,Mitigate
-R-09,Search,Search results are incorrect when filters are combined,2,2,TC-05;TC-06,Mitigate
-R-10,Localization,Important text is missing or incorrect in a selected language,2,2,TC-47;TC-48;TC-49;TC-50,Mitigate
-R-11,Rating,Invalid rating comments are accepted,2,2,TC-25;TC-26;TC-28,Mitigate
-R-12,Mobile,Application controls are difficult to use on some Android screens,2,2,TC-40;TC-41,Monitor
-R-13,Availability,Booking endpoint becomes unavailable,2,3,TC-31;TC-32,Mitigate
-R-14,Integration,Payment gateway integration fails,2,3,TC-08;TC-11;TC-45,Mitigate
-R-15,Payout,Tutor bank transfer integration fails,2,3,TC-21;TC-46,Mitigate
+R-02,Tutor cancellation,12-hour cancellation rule applied using the wrong time or inconsistent policy,3,3,TC-16;TC-17;TC-18,Mitigate
+R-01,Payments,Duplicate charge after a network retry,2,3,TC-59,Mitigate
+R-03,Payment/booking integration,Payment succeeds but booking confirmation fails,2,3,TC-09;TC-60,Mitigate
+R-04,Child safety and privacy,Personal data exposed or required safety controls missing,2,3,TC-35;TC-36;TC-37;TC-61;TC-62,Mitigate
+R-05,Tutor verification,Unverified tutor is presented as vetted,2,3,TC-61,Mitigate
+R-06,Commission and payouts,Commission or weekly payout is calculated incorrectly,2,3,TC-19;TC-20;TC-21;TC-22;TC-63,Mitigate
+R-09,Booking concurrency,Two students receive the same one-hour slot,2,3,TC-10;TC-12,Mitigate
+R-13,Third-party video,Video integration cannot support required concurrency,2,3,TC-33;TC-34;TC-44,Mitigate
+R-07,Search performance,Search latency exceeds the p95 target,2,2,TC-29;TC-30;TC-51,Mitigate
+R-08,Search filtering,Search returns tutors that do not match filters,2,2,TC-01;TC-02;TC-03;TC-04;TC-05;TC-06,Mitigate
+R-11,Mobile compatibility,Core flow is unusable on supported Android devices,2,2,TC-40;TC-41;TC-55,Mitigate
+R-12,Localization,Booking screen has untranslated or clipped UI text,2,2,TC-47;TC-48;TC-49;TC-50;TC-58,Mitigate
+R-14,Availability monitoring,Booking endpoint uptime falls below 99.5 percent monthly,1,3,TC-31;TC-32;TC-52,Mitigate
+R-10,Ratings,Rating submitted for an ineligible session or invalid value,1,2,TC-23;TC-24;TC-26;TC-28,Monitor
+R-15,Cloud architecture,Deployment does not match the client-approved cloud decision,1,2,TC-42;TC-56,Monitor
