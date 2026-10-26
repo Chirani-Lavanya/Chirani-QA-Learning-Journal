@@ -78,11 +78,18 @@ Extended video-call quality beyond the required concurrency (R-13): First valida
 
 ## 8.How to Run the Checks
 
-Run these commands from the session-2-thinking-like-a-tester folder:
+Run these commands.
+
+**Check test-condition coverage:** 
 
 python3 tools/check_coverage.py
+
+**Check and rank the risks:**
+
 python3 tools/score_risks.py
 
-A passing run exits with code 0. The coverage script checks for at least 25 test conditions, at least 8 negative or boundary conditions, and coverage of all required functional requirements, non-functional requirements, and constraints.
+Both scripts should finish with exit code `0`.
 
-The risk script checks for at least 10 risks, at least 3 risks scoring 6 or 9, 100% of risks linked to existing test-condition IDs, and at least 3 distinct score values
+The coverage script checks that there are at least 25 test conditions, at least 8 negative or boundary conditions, and coverage of all required functional requirements, non-functional requirements, and constraints.
+
+The risk script checks for at least 10 risks, at least 3 risks with scores of 6 or 9, 100% of risks linked to existing test-condition IDs, and at least 3 distinct risk-score values.
