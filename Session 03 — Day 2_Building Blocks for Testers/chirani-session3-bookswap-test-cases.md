@@ -1,13 +1,15 @@
-BookSwap – Test Case Set
+## BookSwap – Test Case Set
 
 Session 3, Day 2 Challenge | Deliverable 
 
-Name: Chirani Lavanya
+## Name: Chirani Lavanya
 
 Environment: BookSwap API mock (Stoplight Prism) and PostgreSQL seed database.
 
-1. Scope and Entry / Exit Criteria
+## 1. Scope and Entry / Exit Criteria
+
 Scope
+
 - FR-1: Create and view book listings.
 - FR-2: Search books and filter by condition.
 - FR-3: Submit and validate borrow requests.
@@ -17,6 +19,7 @@ Scope
 Out of scope for execution with the supplied mock: Real email delivery, in-app notifications, photo upload and performance measurements. The supplied Prism mock returns example responses and does not implement application business logic or database writes. UI cases are prepared for the later UI session.
 
 Entry criteria
+
 - Docker services are running and PostgreSQL seed data is loaded.
 - Prism is available at http://localhost:4010.
 - Postman and a non-empty bearer token are available for authenticated API checks.
@@ -26,7 +29,8 @@ Exit criteria
 - Record defects and blocked checks.
 - Verify that API responses do not expose phone numbers or addresses.
 
-2. Test Cases
+## 2. Test Cases
+
 # BookSwap – Test Case Set
 
 | TC-ID | Title | Req Ref | Priority | Layer | Preconditions | Test Data | Steps | Expected Result |
@@ -49,7 +53,7 @@ Exit criteria
 | BS-TC-016 | Verify catalogue responses do not expose private member data | NFR-5 | High | API | Prism running; token available. | GET /books | 1. Send GET /books with valid token. 2. Inspect all top-level and nested JSON fields. | No member phone numbers or addresses are included in API response. |
 | BS-TC-017 | Verify search responses do not expose private member data | NFR-5 | High | API | Prism running; token available. | GET /books?search=Madol%20Doova | 1. Send search request with valid token. 2. Inspect all top-level and nested JSON fields. | No member phone numbers or addresses are included in API response. |
 
-3. SQL Verification Checks
+## 3. SQL Verification Checks
 
 Run these against the PostgreSQL seed database. They inspect seed data; they do not prove that the application correctly rejects invalid requests.
 
@@ -82,7 +86,8 @@ FROM members
 WHERE id IN (17, 19)
   AND (phone IS NULL OR phone = '');
 
-4. Challenge Seed Data
+## 4. Challenge Seed Data
+
 ## 2. Test Data Set
 
 | Data Set | Seed Value | Purpose |
@@ -96,8 +101,10 @@ WHERE id IN (17, 19)
 
 Use only IDs confirmed in the supplied seed data. For other API cases, select valid records from the database or create suitable data in a real test environment; do not assume example IDs exist.
 
-5. UI Cases Prepared for the Later Session
+## 5. UI Cases Prepared for the Later Session
+
 When the BookSwap UI becomes available, use the related scenarios to check:
+
 - Listing creation and ISBN validation (BS-TC-001–002).
 - Catalogue display, title search and condition filtering (BS-TC-003–005).
 - Borrow requests and invalid request scenarios (BS-TC-006–009).
@@ -105,7 +112,8 @@ When the BookSwap UI becomes available, use the related scenarios to check:
 - Weekly digest and delivery (BS-TC-013–014).
 - Authentication and privacy (BS-TC-015–017).
 
-6. Execution Status
+## 6. Execution Status
+   
 No execution results are claimed in this Deliverable 1 document. Record actual outcomes, evidence, defects and blocked tests in Deliverable 2 after running the checks.
 
 Mock limitation: Stoplight Prism returns OpenAPI example responses. It does not implement the real application business rules or write changes to PostgreSQL. A sample 201, 204 or other response from Prism is not proof that the corresponding business operation succeeded.
