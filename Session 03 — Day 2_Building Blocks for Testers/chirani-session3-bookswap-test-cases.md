@@ -1,6 +1,9 @@
 BookSwap – Test Case Set
-Session 3, Day 2 Challenge | Deliverable 1
+
+Session 3, Day 2 Challenge | Deliverable 
+
 Name: Chirani Lavanya
+
 Environment: BookSwap API mock (Stoplight Prism) and PostgreSQL seed database.
 
 1. Scope and Entry / Exit Criteria
@@ -47,10 +50,13 @@ Exit criteria
 | BS-TC-017 | Verify search responses do not expose private member data | NFR-5 | High | API | Prism running; token available. | GET /books?search=Madol%20Doova | 1. Send search request with valid token. 2. Inspect all top-level and nested JSON fields. | No member phone numbers or addresses are included in API response. |
 
 3. SQL Verification Checks
+
 Run these against the PostgreSQL seed database. They inspect seed data; they do not prove that the application correctly rejects invalid requests.
 
 BS-TC-007 – Duplicate pending requests
+
 SELECT id, book_id, borrower_id, status
+
 FROM borrow_requests
 WHERE book_id = 11
   AND borrower_id = 9
