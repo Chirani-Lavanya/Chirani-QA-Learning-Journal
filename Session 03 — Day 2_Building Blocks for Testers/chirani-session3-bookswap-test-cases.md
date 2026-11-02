@@ -53,60 +53,52 @@ Exit criteria
 | BS-TC-016 | Verify catalogue responses do not expose private member data | NFR-5 | High | API | Prism running; token available. | GET /books | 1. Send GET /books with valid token. 2. Inspect all top-level and nested JSON fields. | No member phone numbers or addresses are included in API response. |
 | BS-TC-017 | Verify search responses do not expose private member data | NFR-5 | High | API | Prism running; token available. | GET /books?search=Madol%20Doova | 1. Send search request with valid token. 2. Inspect all top-level and nested JSON fields. | No member phone numbers or addresses are included in API response. |
 
+
 ## 3. SQL Verification Checks
 
-Run these against the PostgreSQL seed database. They inspect seed data; they do not prove that the application correctly rejects invalid requests.
+Run these queries against the PostgreSQL seed database. They inspect seed data; they do not prove that the application correctly rejects invalid requests.
 
-BS-TC-007 – Duplicate pending requests
+### BS-TC-007 – Duplicate Pending Requests
 
+```sql
 SELECT id, book_id, borrower_id, status
-
 FROM borrow_requests
-
 WHERE book_id = 11
-
   AND borrower_id = 9
-  
   AND status = 'pending';
-  
-BS-TC-008 – Own-book request
+```
 
+### BS-TC-008 – Own-Book Request
+
+```sql
 SELECT b.id AS book_id,
-
        b.owner_id,
-       
        br.borrower_id,
-       
        br.status
 FROM books b
-
 JOIN borrow_requests br ON br.book_id = b.id
-
 WHERE b.id = 5
-
   AND b.owner_id = br.borrower_id;
-  
-BS-TC-011 – Outstanding loans older than 30 days
+```
 
+### BS-TC-011 – Outstanding Loans Older Than 30 Days
+
+```sql
 SELECT id, book_id, borrower_id, borrowed_at, returned_at, status
-
 FROM loans
-
 WHERE status = 'out'
-
   AND returned_at IS NULL
-  
   AND borrowed_at < CURRENT_DATE - INTERVAL '30 days';
-  
-BS-TC-016 / BS-TC-017 – Seed members with missing phone values
+```
 
+### BS-TC-016 / BS-TC-017 – Seed Members with Missing Phone Values
+
+```sql
 SELECT id, display_name, phone
-
 FROM members
-
 WHERE id IN (17, 19)
-
   AND (phone IS NULL OR phone = '');
+```
 
 ## 4. Challenge Seed Data
 
