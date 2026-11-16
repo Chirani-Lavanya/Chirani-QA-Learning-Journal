@@ -1,6 +1,6 @@
 # BookSwap — Reliability Checks (Session 4 / Day 3)
 
-These checks belong on the authorised Day 03 practice build and the database connected to it. The uploaded Day 02 project is not sufficient to prove them: it contains a Prism mock (fixed examples, no persistence), a separate seeded PostgreSQL database, and no email/notification service.
+These checks belong on the authorised Day 03 practice build and the database connected to it. The uploaded Day 02 project is not sufficient to prove so: it contains a Prism mock (fixed examples, no persistence), a separate seeded PostgreSQL database, and no email/notification service.
 
 ## R1 — Listing creation while email/notification service is down
 
