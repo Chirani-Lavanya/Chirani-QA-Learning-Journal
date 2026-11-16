@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Chirani - Session 3 BookSwap Smoke Collection" tests="7" time="0.513">
+  <testsuite name="01 - List books" id="f3994c28-388f-4f3f-be43-006ec1db00e0" timestamp="2026-11-02T20:27:18.853Z" tests="3" failures="0" errors="0" time="0.371">
+    <testcase name="Status is 200" time="0.371" classname="01ListBooks"/>
+    <testcase name="body.items is an array" time="0.371" classname="01ListBooks"/>
+    <testcase name="body.pageSize equals 20" time="0.371" classname="01ListBooks"/>
+  </testsuite>
+  <testsuite name="02 - Create book - check mock example response" id="ef9803d9-0463-4b6c-8068-5404c09efe5d" timestamp="2026-11-02T20:27:18.853Z" tests="3" failures="0" errors="0" time="0.027">
+    <testcase name="Status is 201 (created)" time="0.027" classname="02CreateBookCheckMockExampleResponse"/>
+    <testcase name="Mock response contains a book id" time="0.027" classname="02CreateBookCheckMockExampleResponse"/>
+    <testcase name="Mock returns the expected example title" time="0.027" classname="02CreateBookCheckMockExampleResponse"/>
+  </testsuite>
+  <testsuite name="03 - Create book without title" id="13f136e1-d590-4d5c-bbf4-a2f7edeeb66d" timestamp="2026-11-02T20:27:18.853Z" tests="2" failures="0" errors="0" time="0.023">
+    <testcase name="Missing title is rejected" time="0.023" classname="03CreateBookWithoutTitle"/>
+    <testcase name="Response identifies the missing title field" time="0.023" classname="03CreateBookWithoutTitle"/>
+  </testsuite>
+  <testsuite name="04 - Submit borrow request" id="718b9cad-44c4-4282-9728-7e26ca80f7cc" timestamp="2026-11-02T20:27:18.853Z" tests="2" failures="0" errors="0" time="0.032">
+    <testcase name="Status is 201 (created)" time="0.032" classname="04SubmitBorrowRequest"/>
+    <testcase name="Borrow request status is pending" time="0.032" classname="04SubmitBorrowRequest"/>
+  </testsuite>
+  <testsuite name="05 - List books without token" id="de9c94cb-8ea1-4075-b3f8-e8ff0b936870" timestamp="2026-11-02T20:27:18.853Z" tests="1" failures="0" errors="0" time="0.023">
+    <testcase name="Unauthenticated request returns 401" time="0.023" classname="05ListBooksWithoutToken"/>
+  </testsuite>
+  <testsuite name="06 - Search books by ISBN and check privacy" id="8b6403c3-10c4-499d-bffe-c3b4ee9c8a7d" timestamp="2026-11-02T20:27:18.853Z" tests="2" failures="0" errors="0" time="0.020">
+    <testcase name="Status is 200" time="0.020" classname="06SearchBooksByIsbnAndCheckPrivacy"/>
+    <testcase name="Response does not expose phone or address fields" time="0.020" classname="06SearchBooksByIsbnAndCheckPrivacy"/>
+  </testsuite>
+  <testsuite name="07 - Create book with invalid ISBN" id="2e0e4cc5-fbe2-4277-a81d-0e96c1825bbf" timestamp="2026-11-02T20:27:18.853Z" tests="2" failures="1" errors="0" time="0.017">
+    <testcase name="Invalid ISBN request returns a validation error" time="0.017" classname="07CreateBookWithInvalidIsbn"/>
+    <testcase name="Validation response identifies ISBN field" time="0.017" classname="07CreateBookWithInvalidIsbn">
+      <failure type="AssertionFailure" message="expected '{&quot;error&quot;:&quot;validation_failed&quot;,&quot;fields&quot;…' to include 'isbn'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8d2c5b9e-3d11-4b5d-9f12-3a7c9e6b2026.]]>
+        <![CDATA[Collection name: Chirani - Session 3 BookSwap Smoke Collection.]]>
+        <![CDATA[Request name: 07 - Create book with invalid ISBN.]]>
+        <![CDATA[Test description: Validation response identifies ISBN field.]]>
+        <![CDATA[Error message: expected '{"error":"validation_failed","fields"…' to include 'isbn'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected '{"error":"validation_failed","fields"…' to include 'isbn'
+   at Object.eval sandbox-script.js:2:7).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,13 @@
+ZAP BASELINE REPORT — NOT RUN
+
+The Day 02 ZIP did not include the Day 03 practice UI on localhost:3000 and Docker is not available in the current execution environment. No fake HTML report is provided.
+
+On your authorised local practice build, execute the passive baseline from the repository root:
+
+  export CONFIRM_PRACTICE_BUILD=YES
+  bash security/run-zap-baseline.sh
+
+Expected output:
+  security/evidence/zap-baseline-report.html
+
+Review the alert list and document at least one real finding or false positive with a reason in security/security-checklist.md. Do not scan any client, production or third-party site.

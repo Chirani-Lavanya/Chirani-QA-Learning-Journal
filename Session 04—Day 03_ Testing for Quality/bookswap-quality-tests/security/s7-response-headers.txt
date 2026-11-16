@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: *
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: *
+Content-type: application/json
+Content-Length: 386
+Date: Mon, 16 Nov 2026 10:47:41 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+

@@ -1,0 +1,6 @@
+NOT RUN — no Day 03 practice UI/API was included in the uploaded Day 02 ZIP.
+
+Once the authorised practice build is running, execute:
+  curl -sS -I http://localhost:3000 | tee security/security-headers.txt
+
+Review the actual response headers and compare them with the ZAP baseline report. Do not treat missing HSTS on plain local HTTP as a production defect without checking the real HTTPS deployment.

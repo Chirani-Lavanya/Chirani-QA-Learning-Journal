@@ -1,0 +1,18 @@
+# Local credentials and environment files
+.env
+.env.*
+!.env.example
+*.token
+*token*.txt
+secrets*
+
+# Raw security captures may contain sensitive test information; review and redact before committing
+security/bola-*-response*.json
+security/*unredacted*
+*.har
+
+# Local/editor artefacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

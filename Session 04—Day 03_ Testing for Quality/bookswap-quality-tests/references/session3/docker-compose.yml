@@ -1,0 +1,31 @@
+
+services:
+  api-mock:
+    image: stoplight/prism:5.15.10
+    command: ["mock", "--multiprocess", "false", "-h", "0.0.0.0", "-p", "4010", "/api/bookswap-openapi.yaml"]
+    volumes:
+      - ./api:/api:ro
+    ports:
+      - "4010:4010"
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: bookswap
+      POSTGRES_PASSWORD: bookswap-local-only
+      POSTGRES_DB: bookswap
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bookswap -d bookswap"]
+      interval: 5s
+      retries: 10
+
+  adminer:
+    image: adminer:4.8.1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db

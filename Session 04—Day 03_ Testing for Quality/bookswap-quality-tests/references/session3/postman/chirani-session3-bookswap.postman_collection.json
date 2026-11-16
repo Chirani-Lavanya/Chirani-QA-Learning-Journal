@@ -1,0 +1,236 @@
+
+{
+  "info": {
+    "_postman_id": "8d2c5b9e-3d11-4b5d-9f12-3a7c9e6b2026",
+    "name": "Chirani - Session 3 BookSwap Smoke Collection",
+    "description": "Seven BookSwap mock API smoke requests. Uses environment variables baseUrl, token and bookId. Assertions verify observed mock responses and basic API checks. Prism returns predefined examples and does not implement real business logic or data persistence.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "bookId",
+      "value": "101",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 - List books",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"},
+          {"key": "Content-Type", "value": "application/json", "type": "text"}
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/books?page=1&pageSize=20",
+          "host": ["{{baseUrl}}"],
+          "path": ["books"],
+          "query": [
+            {"key": "page", "value": "1"},
+            {"key": "pageSize", "value": "20"}
+          ]
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+            "const body = pm.response.json();",
+            "pm.test('body.items is an array', function () { pm.expect(body.items).to.be.an('array'); });",
+            "pm.test('body.pageSize equals 20', function () { pm.expect(body.pageSize).to.eql(20); });"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "02 - Create book - check mock example response",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"},
+          {"key": "Content-Type", "value": "application/json", "type": "text"}
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": ["{{baseUrl}}"],
+          "path": ["books"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Postman Smoke Test Book\",\n  \"author\": \"QA Test Author\",\n  \"isbn\": \"9789552100999\",\n  \"condition\": \"good\"\n}",
+          "options": {"raw": {"language": "json"}}
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Status is 201 (created)', function () { pm.response.to.have.status(201); });",
+            "const body = pm.response.json();",
+            "pm.test('Mock response contains a book id', function () { pm.expect(body).to.have.property('id'); });",
+            "pm.test('Mock returns the expected example title', function () { pm.expect(body.title).to.eql('Madol Doova'); });"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "03 - Create book without title",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"},
+          {"key": "Content-Type", "value": "application/json", "type": "text"}
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": ["{{baseUrl}}"],
+          "path": ["books"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"author\": \"QA Test Author\",\n  \"isbn\": \"9789552100998\",\n  \"condition\": \"good\"\n}",
+          "options": {"raw": {"language": "json"}}
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Missing title is rejected', function () { pm.expect([400, 422]).to.include(pm.response.code); });",
+            "const body = pm.response.json();",
+            "pm.test('Response identifies the missing title field', function () {",
+            "  const responseText = JSON.stringify(body).toLowerCase();",
+            "  pm.expect(responseText).to.include('title');",
+            "});"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "04 - Submit borrow request",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"},
+          {"key": "Content-Type", "value": "application/json", "type": "text"}
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/books/{{bookId}}/borrow-requests",
+          "host": ["{{baseUrl}}"],
+          "path": ["books", "{{bookId}}", "borrow-requests"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"message\": \"I would like to borrow this book.\"\n}",
+          "options": {"raw": {"language": "json"}}
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Status is 201 (created)', function () { pm.response.to.have.status(201); });",
+            "const body = pm.response.json();",
+            "pm.test('Borrow request status is pending', function () { pm.expect(body.status).to.eql('pending'); });"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "05 - List books without token",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?page=1&pageSize=20",
+          "host": ["{{baseUrl}}"],
+          "path": ["books"],
+          "query": [
+            {"key": "page", "value": "1"},
+            {"key": "pageSize", "value": "20"}
+          ]
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Unauthenticated request returns 401', function () { pm.response.to.have.status(401); });"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "06 - Search books by ISBN and check privacy",
+      "request": {
+        "method": "GET",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"},
+          {"key": "Content-Type", "value": "application/json", "type": "text"}
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/books?search=9789552100012",
+          "host": ["{{baseUrl}}"],
+          "path": ["books"],
+          "query": [{"key": "search", "value": "9789552100012"}]
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+            "const body = pm.response.json();",
+            "pm.test('Response does not expose phone or address fields', function () {",
+            "  const responseText = JSON.stringify(body).toLowerCase();",
+            "  pm.expect(responseText).not.to.include('\"phone\"');",
+            "  pm.expect(responseText).not.to.include('\"address\"');",
+            "});"
+          ]
+        }
+      }]
+    },
+    {
+      "name": "07 - Create book with invalid ISBN",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{token}}", "type": "text"},
+          {"key": "Content-Type", "value": "application/json", "type": "text"}
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": ["{{baseUrl}}"],
+          "path": ["books"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Invalid ISBN Test\",\n  \"author\": \"QA Test Author\",\n  \"isbn\": \"955123456\",\n  \"condition\": \"good\"\n}",
+          "options": {"raw": {"language": "json"}}
+        }
+      },
+      "event": [{
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test('Invalid ISBN request returns a validation error', function () { pm.expect([400, 422]).to.include(pm.response.code); });",
+            "const body = pm.response.json();",
+            "pm.test('Validation response identifies ISBN field', function () {",
+            "  const responseText = JSON.stringify(body).toLowerCase();",
+            "  pm.expect(responseText).to.include('isbn');",
+            "});"
+          ]
+        }
+      }]
+    }
+  ]
+}

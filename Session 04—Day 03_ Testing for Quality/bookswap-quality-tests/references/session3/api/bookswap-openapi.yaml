@@ -1,0 +1,143 @@
+
+openapi: 3.0.3
+info:
+  title: BookSwap API (practice mock)
+  version: 0.1.0
+servers:
+  - url: http://localhost:4010
+security:
+  - bearerAuth: []
+paths:
+  /books:
+    get:
+      summary: Search the building catalogue
+      parameters:
+        - { name: search, in: query, schema: { type: string } }
+        - { name: condition, in: query, schema: { type: string, enum: [new, good, fair, poor] } }
+        - { name: page, in: query, schema: { type: integer, minimum: 1, default: 1 } }
+        - { name: pageSize, in: query, schema: { type: integer, minimum: 1, maximum: 50, default: 20 } }
+      responses:
+        "200":
+          description: Page of books
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/BookPage" }
+              example:
+                page: 1
+                pageSize: 20
+                total: 2
+                items:
+                  - { id: 101, title: "Madol Doova", author: "Martin Wickramasinghe", isbn: "9789552100012", condition: good, status: available, owner: { id: 1, displayName: "Member M1" } }
+                  - { id: 102, title: "Gamperaliya", author: "Martin Wickramasinghe", isbn: "9789552100029", condition: fair, status: on_loan, owner: { id: 2, displayName: "Member M2" } }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+    post:
+      summary: List a book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/NewBook" }
+      responses:
+        "201":
+          description: Book listed
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Book" }
+              example: { id: 201, title: "Madol Doova", author: "Martin Wickramasinghe", isbn: "9789552100012", condition: good, status: available, owner: { id: 1, displayName: "Member M1" } }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "422": { $ref: "#/components/responses/ValidationError" }
+  /books/{bookId}/borrow-requests:
+    post:
+      summary: Request to borrow a book
+      parameters:
+        - { name: bookId, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message: { type: string, maxLength: 200 }
+      responses:
+        "201":
+          description: Borrow request created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/BorrowRequest" }
+              example: { id: 5001, bookId: 101, borrowerId: 2, status: pending, createdAt: "2026-10-12T09:30:00Z" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { description: No such book }
+        "409": { description: Book already on loan or request already open }
+  /loans/{loanId}:
+    patch:
+      summary: Mark a loan returned
+      parameters:
+        - { name: loanId, in: path, required: true, schema: { type: integer } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: { type: string, enum: [returned] }
+      responses:
+        "204": { description: Loan updated }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { description: No such loan }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer }
+  responses:
+    Unauthorized:
+      description: Missing or invalid token
+      content:
+        application/json:
+          example: { error: "unauthorized" }
+    ValidationError:
+      description: Request failed validation
+      content:
+        application/json:
+          example: { error: "validation_failed", fields: ["title"] }
+  schemas:
+    Owner:
+      type: object
+      properties:
+        id: { type: integer }
+        displayName: { type: string }
+    NewBook:
+      type: object
+      required: [title, author, isbn, condition]
+      properties:
+        title: { type: string, minLength: 1 }
+        author: { type: string, minLength: 1 }
+        isbn: { type: string, pattern: "^(97[89])?[0-9]{9}[0-9X]$" }
+        condition: { type: string, enum: [new, good, fair, poor] }
+    Book:
+      allOf:
+        - $ref: "#/components/schemas/NewBook"
+        - type: object
+          properties:
+            id: { type: integer }
+            status: { type: string, enum: [available, on_loan, unavailable] }
+            owner: { $ref: "#/components/schemas/Owner" }
+    BookPage:
+      type: object
+      properties:
+        page: { type: integer }
+        pageSize: { type: integer }
+        total: { type: integer }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Book" }
+    BorrowRequest:
+      type: object
+      properties:
+        id: { type: integer }
+        bookId: { type: integer }
+        borrowerId: { type: integer }
+        status: { type: string, enum: [pending, accepted, declined] }
+        createdAt: { type: string, format: date-time }
