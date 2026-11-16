@@ -6,8 +6,6 @@
 
 This repository contains the four Day 03 deliverables, reusable test scripts, and the relevant Day 02 OpenAPI/SQL/Postman evidence.
 
-> **Important environment finding:** The supplied Day 02 ZIP contains only a Stoplight Prism API mock (`localhost:4010`), PostgreSQL seed database (`bookswap`), Adminer, and Postman/Newman evidence. It does **not** contain the Day 03 practice UI/API service at `localhost:3000`, login/account service, email dependency, monitoring/paging service, or application audit logs. The Prism mock returns fixed examples and is not connected to PostgreSQL. Therefore this pack clearly separates Day 02 evidence from Day 03 checks that still need the separate authorised practice build. No k6, ZAP, accessibility result or Day 03 product defect has been invented.
-
 ## Repository layout
 
 ```text
@@ -127,7 +125,7 @@ Run the passive ZAP baseline only against the authorised local practice build, f
 
 See `defects/defect-report-set.md`. It uses six actual Day 02 observations from the uploaded SQL/Newman evidence. The Day 02 SQL report explicitly says its five database findings are seed-data findings requiring application-level reproduction before classifying them as product defects. The invalid-ISBN mismatch is confirmed in the Prism/Newman mock evidence, but real application behaviour remains unknown.
 
-These findings provide a defensible evidence-based start, **not five confirmed Day 03 application defects**. The challenge's performance, BOLA/security and accessibility defect types still require the practice build. Do not submit the training slide examples as if you personally observed them.
+These findings provide a defensible evidence-based start, **not five confirmed Day 03 application defects**. The challenge's performance, BOLA/security and accessibility defect types still require the practice build. 
 
 ## 6. Accessibility
 
@@ -146,5 +144,3 @@ git branch -M main
 git remote add origin YOUR_GITHUB_REPOSITORY_URL
 git push -u origin main
 ```
-
-This is a prepared, evidence-linked challenge pack. It is not a claim that all four deliverables have passed; the remaining local checks must be executed for a valid final submission.
