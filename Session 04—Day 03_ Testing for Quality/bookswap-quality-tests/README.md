@@ -55,8 +55,6 @@ Connect to PostgreSQL:
 docker compose exec db psql -U bookswap -d bookswap
 ```
 
-**Important:** Prism responses do not write to this database. The Postman `POST /books` and borrow-request examples are fixed mock responses, not proof of persistence.
-
 ## 2. Deliverable 1 — NFR-to-Test Map
 
 See `nfr/nfr-test-map.md`. All seven Day 03 NFRs are mapped to measurable checks, tool, sample size/duration, threshold, test type, level, and run-today/specialist status. The Day 03 search requirement **p99 < 800 ms** supersedes Day 02's old **p95 < 300 ms** target.
